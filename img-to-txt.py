@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+import customtkinter
 from tkinter import filedialog, messagebox
 from PIL import Image
 import pytesseract
@@ -10,7 +11,7 @@ class ImageToTextConverterApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Image to Text Converter")
-        self.root.geometry("300x240")  # Set the initial size of the window
+        self.root.geometry("340x260")  # Set the initial size of the window
 
         self.file_paths = []
 
@@ -18,10 +19,12 @@ class ImageToTextConverterApp:
         #self.label = tk.Label(root, text="Select up to 10 images:")
         #self.label.pack(pady=10)
 
-        self.select_button = tk.Button(root, text="Select Images", command=self.select_images)
+        customtkinter.set_appearance_mode("system")
+
+        self.select_button = customtkinter.CTkButton(root, text="Select Images", command=self.select_images)
         self.select_button.pack(pady=10)
 
-        self.convert_button = tk.Button(root, text="Convert", command=self.convert_images)
+        self.convert_button = customtkinter.CTkButton(root, text="Convert", command=self.convert_images)
         self.convert_button.pack(pady=10)
 
     def select_images(self):
@@ -50,6 +53,6 @@ class ImageToTextConverterApp:
         messagebox.showinfo("Conversion Complete", f"Images converted to text successfully. Check '{output_file_path}'.")
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = customtkinter.CTk()
     app = ImageToTextConverterApp(root)
     root.mainloop()
